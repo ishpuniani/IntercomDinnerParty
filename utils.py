@@ -18,6 +18,7 @@ class Utils:
                               filepath.split("/")[-1]
                 os.makedirs(os.path.dirname(backup_path), exist_ok=True)
                 os.rename(filepath, backup_path)
+            content = [line + '\n' for line in content]
             with open(filepath, "w") as f:
                 f.writelines(content)
             print("Written to file: " + filepath)
@@ -49,6 +50,7 @@ class Utils:
 
         central_angle_rad = acos(sin_lats + cos_lats * cos(delta_lon))
         distance_km = cls.MEAN_EARTH_RADIUS_KM * central_angle_rad
+        distance_km = round(distance_km, 2)
 
         return distance_km
 

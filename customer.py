@@ -27,11 +27,11 @@ class Customer:
     def get_name(self):
         return self.name
 
+    def csv_row(self) -> str:
+        return '{},{},{},{}'.format(self.id, self.name, self.latitude, self.longitude)
+
     def __eq__(self, other):
         return self.id == other.id and self.name == other.name and self.latitude == other.latitude and self.longitude == other.longitude
 
-    def __str__(self) -> str:
-        return "user_id: {0}, name: {1}, latitude: {2}, longitude: {3}".format(self.id, self.name, self.latitude, self.longitude)
-
-    def csv_row(self) -> str:
-        return '{},{},{},{}\n'.format(self.id, self.name, self.latitude, self.longitude)
+    def __repr__(self) -> str:
+        return "[user_id: {0}, name: {1}, latitude: {2}, longitude: {3}]".format(self.id, self.name, self.latitude, self.longitude)

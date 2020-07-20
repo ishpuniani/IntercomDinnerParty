@@ -1,0 +1,6 @@
+{
+  "input_file_path": "resources/test/texts/customers.txt",
+  "intercom_latitude": 53.339428,
+  "intercom_longitude": -6.257664,
+  "output_file_path": "resources/test/out/inviteList.txt"
+}

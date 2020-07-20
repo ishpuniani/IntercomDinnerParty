@@ -1,0 +1,7 @@
+{
+  "input_file_path": "resources/test/texts/test_customers_dup.txt",
+  "distance_threshold": 100,
+  "intercom_latitude": 53.339428,
+  "intercom_longitude": -6.257664,
+  "output_file_path": "print"
+}

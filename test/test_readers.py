@@ -36,17 +36,17 @@ class TestReaders(unittest.TestCase):
     """
 
     def test_file_reader_empty(self):
-        path = 'resources/test/empty.txt'
+        path = 'resources/test/texts/empty.txt'
         content = FileReader.read(path)
         correct_list = []
         self.assertListEqual(content, correct_list)
 
     def test_file_reader_not_found(self):
-        path = 'resources/test/not_found.txt'
+        path = 'resources/test/texts/not_found.txt'
         self.assertRaises(FileNotFoundError, FileReader.read, path)
 
     def test_file_reader_found(self):
-        path = 'resources/test/some.txt'
+        path = 'resources/test/texts/some.txt'
         correct_list = ['the quick brown fox', 'jumps over the lazy', 'dog']
         content = FileReader.read(path)
         self.assertListEqual(content, correct_list)

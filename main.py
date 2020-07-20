@@ -9,14 +9,14 @@ def execute(config_path):
     # loading config from json
     config = json.load(open(config_path))
     invite = Invite(
-        config['input_file_url'],
-        config['input_file_path'],
         config['distance_threshold'],
         config['intercom_latitude'],
         config['intercom_longitude'],
         config['output_file_path'],
+        input_file_url=config['input_file_url'] if 'input_file_url' in config else None,
+        input_file_path=config['input_file_path'] if 'input_file_path' in config else None
     )
-    return invite.execute()
+    return invite.invite_customers()
 
 
 if __name__ == '__main__':

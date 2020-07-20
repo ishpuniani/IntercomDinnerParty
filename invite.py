@@ -1,7 +1,6 @@
 import json
 import sys
 import traceback
-from collections import Set
 from urllib.error import URLError
 
 from customer import Customer
@@ -11,14 +10,18 @@ from utils import Utils
 
 class Invite:
 
-    def __init__(self, input_file_url, input_file_path, distance_threshold, intercom_latitude, intercom_longitude,
-                 output_file_path):
-        self.input_file_url = input_file_url
-        self.input_file_path = input_file_path
+    def __init__(self, distance_threshold, intercom_latitude, intercom_longitude, output_file_path,
+                 input_file_path=None, input_file_url=None):
         self.distance_threshold = distance_threshold
         self.intercom_latitude = intercom_latitude
         self.intercom_longitude = intercom_longitude
         self.output_file_path = output_file_path
+        if input_file_url is not None:
+            self.input_path = input_file_url
+        elif input_file_path is not None:
+            self.input_path = input_file_path
+        else:
+            raise AttributeError('Input file not provided')
 
     def create_customer_objects(self, customers_list):
         customers = []
@@ -41,7 +44,7 @@ class Invite:
         filtered_customers = sorted(filtered_customers, key=lambda c: c.id)
         return filtered_customers
 
-    def invite_customers(self, customers):
+    def send_invites(self, customers):
         """
         This function can be used to send out email invites to customers satisfying the condition!
         For now, sticking to the task and writing them out to a file.
@@ -49,24 +52,29 @@ class Invite:
         :return: None
         """
 
-        # Writing JSON to text files
-        customers_json = [json.dumps(customer.__dict__)+'\n' for customer in customers]
-        file_path = self.output_file_path
-        Utils.write_to_file(file_path, customers_json)
+        if self.output_file_path.lower() == 'print':
+            print(customers)
+        else:
+            # Writing JSON to text files
+            customers_json = [json.dumps(customer.__dict__) for customer in customers]
+            file_path = self.output_file_path
+            Utils.write_to_file(file_path, customers_json)
 
-        # Writing to CSV
-        customers_csv = ["user_id,name,latitude,longitude\n"]
-        for customer in customers:
-            customers_csv.append(customer.csv_row())
-        Utils.write_to_file(file_path.replace('txt','csv'), customers_csv)
+            # Writing to CSV
+            customers_csv = ["user_id,name,latitude,longitude"]
+            for customer in customers:
+                customers_csv.append(customer.csv_row())
+            Utils.write_to_file(file_path.replace('txt','csv'), customers_csv)
 
-    def execute(self):
+    def invite_customers(self):
         try:
-            # Reading from File on local system
-            customers_list = FileReader.read(self.input_file_path)
 
-            # Reading from file over http
-            # customers_list = HttpReader.read(self.input_file_url)
+            if 'http' in self.input_path:
+                # Reading from file over http
+                customers_list = HttpReader.read(self.input_path)
+            else:
+                # Reading from File on local system
+                customers_list = FileReader.read(self.input_path)
 
             # Creating customer objects from json
             customers = self.create_customer_objects(customers_list)
@@ -75,7 +83,7 @@ class Invite:
             filtered_customers = self.filter_customers_by_distance(customers)
 
             # Inviting customer
-            self.invite_customers(filtered_customers)
+            self.send_invites(filtered_customers)
 
             return filtered_customers
 
