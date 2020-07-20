@@ -9,6 +9,11 @@ class TestUtils(unittest.TestCase):
     Testing utility functions
     """
     def test_write_to_file(self):
+        """
+        Testing write to file
+        Writing and array to file and then reading the files and comparing if they have been written properly
+        :return:
+        """
         content = ['the quick brown fox', 'jumps over the lazy', 'dog']
         filepath = 'resources/test/out/write.txt'
         Utils.write_to_file(filepath, content)
