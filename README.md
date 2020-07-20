@@ -6,33 +6,33 @@ We want to invite any customer within 100km of our Dublin office for some food a
 Write a program that will read the full list of customers and output the names and user ids of matching customers (within 100km), sorted by User ID (ascending).
 
 ### The Solution
-I have built a configurable solution. Here by simply changing the values in the [config.json](link) file, we can modify the behaviour of the code.
+I have built a configurable solution. Here by simply changing the values in the [config.json](https://github.com/ishpuniani/IntercomDinnerParty/blob/master/config.json) file, we can modify the behaviour of the code.
 Instead of hard-coding the parameters, the `main.py` script initializes the `Invite` object with instance attributes from the config file and the `Invite` object takes it from there.
 
 This structure be amazingly helpful, flexible and extensible if we need to run multiple programs.
 For example, we can configure two programs, one where we invite customers within 100km and the other where we invite a different set of customers within a distance of 50km.  
 
-#### Project Structure Overview
-##### Root
+### Project Structure Overview
+#### Root
 In the root of the project there are the following files
-* [main.py](link) - This is the main python script used to run the program.
-* [customer.py](link) - This file contains the customer model.
-* [invite.py](link) - This file contains a class called Invite which contains the bulk of running knowledge.
-* [readers.py](link) - This file contains the Reader interface and implementations: HttpReader and FileReader. 
-* [utils.py](link) - This file contains utility functions Eg: writing to file, calculating distance. 
-* [config.json](link) - This is the configuration file. It contains properties of the invite class like the intercom coordinates, distance threshold and i/o file paths.
+* [main.py](https://github.com/ishpuniani/IntercomDinnerParty/blob/master/main.py) - This is the main python script used to run the program.
+* [customer.py](https://github.com/ishpuniani/IntercomDinnerParty/blob/master/customer.py) - This file contains the customer model.
+* [invite.py](https://github.com/ishpuniani/IntercomDinnerParty/blob/master/invite.py) - This file contains a class called Invite which contains the bulk of running knowledge.
+* [readers.py](https://github.com/ishpuniani/IntercomDinnerParty/blob/master/readers.py) - This file contains the Reader interface and implementations: HttpReader and FileReader. 
+* [utils.py](https://github.com/ishpuniani/IntercomDinnerParty/blob/master/utils.py) - This file contains utility functions Eg: writing to file, calculating distance. 
+* [config.json](https://github.com/ishpuniani/IntercomDinnerParty/blob/master/config.json) - This is the configuration file. It contains properties of the invite class like the intercom coordinates, distance threshold and i/o file paths.
 
-##### Test
+#### Test
 The test folder contains python scripts performing tests on the various components of the program.
 <br>`unittest` has been used to perform these tests.    
 
-##### Resources
-This folder contains the input file [customers.txt](link) along with some files for the tests and output files.
+#### Resources
+This folder contains the input file [customers.txt](https://github.com/ishpuniani/IntercomDinnerParty/blob/master/resources/customers.txt) along with some files for the tests and output files.
 
-##### Output File
-We can find the output file [inviteList.txt](link) in the `resources/out` folder. 
+#### Output File
+We can find the output file [inviteList.txt](https://github.com/ishpuniani/IntercomDinnerParty/blob/master/resources/out/inviteList.txt) in the `resources/out` folder. 
 
-#### Software and requirements
+### Software and requirements
 This problem has been solved using the language Python. If you are using a Mac or Linux, it should already be 
 pre-installed. You can check this by entering:
 
@@ -46,13 +46,13 @@ to do so.
 
 There are no additional packages required to run this script. 
 
-#### Running the code
+### Running the code
 To run the program :
 ```shell script
 python main.py config.json
 ```
 
-#### Running the tests
+### Running the tests
 To run tests on the program:
 ```shell script
 python -m unittest discover test
