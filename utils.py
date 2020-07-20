@@ -33,6 +33,7 @@ class Utils:
     def great_circle_distance(cls, coords1, coords2):
         """
         Function that computes the great-circle distance between two input coords.
+        Formula: https://en.wikipedia.org/wiki/Great-circle_distance
         :param coords1: First set of coordinates (latitude, longitude)
         :param coords2: Second set of coordinates (latitude, longitude)
         :return: Distance in kilometres.

@@ -24,6 +24,11 @@ class Invite:
             raise AttributeError('Input file not provided')
 
     def create_customer_objects(self, customers_list):
+        """
+        Creating customer objects from a list of json
+        :param customers_list: json list of all customers
+        :return: list of customer objects
+        """
         customers = []
         id_set = set()
         for customer_json in customers_list:
@@ -35,12 +40,18 @@ class Invite:
         return customers
 
     def filter_customers_by_distance(self, customers):
+        """
+        Filter customers for the list on the basis of the threshold distance
+        :param customers: list of customers to be filtered
+        :return: a filtered and sorted list of customers on the basis of distance
+        """
         filtered_customers = []
         for customer in customers:
             customer_distance = Utils.great_circle_distance(customer.get_coords(),
                                                             (self.intercom_latitude, self.intercom_longitude))
             if customer_distance <= self.distance_threshold:
                 filtered_customers.append(customer)
+
         filtered_customers = sorted(filtered_customers, key=lambda c: c.id)
         return filtered_customers
 
@@ -53,6 +64,7 @@ class Invite:
         """
 
         if self.output_file_path.lower() == 'print':
+            # for debugging and tests
             print(customers)
         else:
             # Writing JSON to text files
