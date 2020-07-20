@@ -30,7 +30,11 @@ The test folder contains python scripts performing tests on the various componen
 This folder contains the input file [customers.txt](https://github.com/ishpuniani/IntercomDinnerParty/blob/master/resources/customers.txt) along with some files for the tests and output files.
 
 #### Output File
-We can find the output file [inviteList.txt](https://github.com/ishpuniani/IntercomDinnerParty/blob/master/resources/out/inviteList.txt) in the `resources/out` folder. 
+We can find the output files 
+* [inviteList.txt](https://github.com/ishpuniani/IntercomDinnerParty/blob/master/resources/out/inviteList.txt) - text file with json of each customer invited.
+* [inviteList.csv](https://github.com/ishpuniani/IntercomDinnerParty/blob/master/resources/out/inviteList.csv) - CSV file with customer information as rows.
+
+in the `resources/out` folder. 
 
 ### Software and requirements
 This problem has been solved using the language Python. If you are using a Mac or Linux, it should already be 

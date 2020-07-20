@@ -9,6 +9,8 @@ class Utils:
 
     @staticmethod
     def write_to_file(filepath, content, backup=False):
+        if filepath is None or len(content) == 0:
+            raise ValueError('Unable to write to file, invalid parameters.')
         try:
             os.makedirs(os.path.dirname(filepath), exist_ok=True)
             if backup:
@@ -34,6 +36,9 @@ class Utils:
         :param coords2: Second set of coordinates (latitude, longitude)
         :return: Distance in kilometres.
         """
+        if len(coords1) != 2 or len(coords2) != 2:
+            raise ValueError('Unable to compute great circle distance, invalid parameters.')
+
         (lat_1, lon_1) = cls.coords_to_radians(coords1)
 
         (lat_2, lon_2) = cls.coords_to_radians(coords2)

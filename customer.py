@@ -32,3 +32,6 @@ class Customer:
 
     def __str__(self) -> str:
         return "user_id: {0}, name: {1}, latitude: {2}, longitude: {3}".format(self.id, self.name, self.latitude, self.longitude)
+
+    def csv_row(self) -> str:
+        return '{},{},{},{}\n'.format(self.id, self.name, self.latitude, self.longitude)
