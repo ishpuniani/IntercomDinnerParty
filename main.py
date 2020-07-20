@@ -1,0 +1,30 @@
+import argparse
+import json
+import sys
+import traceback
+from invite import Invite
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Run System with config')
+    parser.add_argument('config_path', help='Config json path')
+    args = parser.parse_args()
+
+    try:
+        # loading config from json
+        config = json.load(open(args.config_path))
+        invite = Invite(
+            config['input_file_url'],
+            config['input_file_path'],
+            config['distance_threshold'],
+            config['intercom_latitude'],
+            config['intercom_longitude'],
+            config['output_file_path'],
+        )
+        invite.execute()
+
+    except KeyError as ve:
+        print("Invalid config")
+        traceback.print_exc(file=sys.stdout)
+    except Exception as e:
+        print("Some error occurred")
+        traceback.print_exc(file=sys.stdout)

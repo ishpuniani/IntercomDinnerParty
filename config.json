@@ -1,0 +1,8 @@
+{
+  "input_file_url": "https://s3.amazonaws.com/intercom-take-home-test/customers.txt",
+  "input_file_path": "resources/customers.txt",
+  "distance_threshold": 100,
+  "intercom_latitude": 53.339428,
+  "intercom_longitude": -6.257664,
+  "output_file_path": "resources/out/inviteList.txt"
+}
